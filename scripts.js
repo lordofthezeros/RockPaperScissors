@@ -5,23 +5,50 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return "It's a draw, play again!";
+        return "draw";
+    } else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'rock')) {
+        return 'lose';
+    } else {
+        return 'win';
     }
-    else if ((playerSelection === 'rock' && computerSelection === 'paper') ||  
-            (playerSelection === 'paper' && computerSelection === 'scissors') || 
-            (playerSelection === 'scissors' && computerSelection === 'rock')) {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
-    }
-    else {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
-    }
-    
+
 }
 
-let choices = ["rock", "paper", "scissors"]
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
 
-let computerChoice = computerPlay().toLowerCase()
+    for (let i = 1; i < 6;) {
+        let computerChoice = computerPlay().toLowerCase();
+        let playerChoice = prompt("Make your choice! Type Rock, Paper, or Scissors to choose").toLowerCase();
+        let roundResult = playRound(playerChoice, computerChoice);
 
-let playerChoice = prompt("Make your choice! Type Rock, Paper, or Scissors to choose").toLowerCase()
+        if (roundResult === 'draw') {
+            console.log("The round was drawn, play again")
+        } else if (roundResult === 'lose') {
+            computerScore++;
+            i++;
+            console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
+        } else {
+            playerScore++;
+            i++;
+            console.log(`You win! ${playerChoice} beats ${computerChoice}`)
+        }
 
-console.log(playRound(playerChoice, computerChoice))
+        console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
+
+    }
+    console.log("Game Over")
+    if (playerScore > computerScore) {
+        console.log("You win!")
+    } else {
+        console.log("You lose!")
+    }
+    console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
+}
+
+let choices = ["rock", "paper", "scissors"];
+
+game()
