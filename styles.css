@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ca90ae;
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+
+}
+
+.heading {
+    font-size: 35px;
+    text-align: center;
+    background-color: #ca90ae;
+    padding: 50px 75px;
+    
+}
+
+.score {
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+.message {
+    text-align: center;
+    font-size: 30px;
+    padding: 25px;
+}
+
+.card-flex {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 75px;
+    padding: 20px 0 50px;
+}
+
+.card-image {
+    padding-bottom: 25px;
+}
+
+.card-image:hover {
+    transform: scale(1.1);
+}
+
+.card-text {
+    text-align: center;
+    font-size: 25px;
+}

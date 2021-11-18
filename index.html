@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="scripts.js"></script>
+    <title>Rock Paper Scissors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css ">
 </head>
+
 <body>
-    <h1>To play head to the developer tools!</h1>
+
+    <div class="heading">
+        <h1>Let's Play 'Rock, Paper, Scissors'</h1>
+    </div>
+    <div class="score">
+        <div class="player-score">0</div>
+        <div class="separator">:</div>
+        <div class="computer-score">0</div>
+    </div>
+    <div class="message">Choose Rock, Paper, or Scissors to start...First to 5 wins!</div>
+    <div class="card-flex">
+        <div class="card">
+            <div class="card-image" data-key="rock">
+                <img src="images/rock.png" alt="Rock">
+            </div>
+            <div class="card-text">Rock</div>
+        </div>
+        <div class="card">
+            <div class="card-image" data-key="paper">
+                <img src="images/paper.png" alt="Paper">
+            </div>
+            <div class="card-text">Paper</div>
+        </div>
+        <div class="card">
+            <div class="card-image" data-key="scissors">
+                <img src="images/scissors.png" alt="Scissors">
+            </div>
+            <div class="card-text">Scissors</div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
+
 </html>
