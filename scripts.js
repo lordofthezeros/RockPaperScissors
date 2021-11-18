@@ -1,17 +1,40 @@
+const images = document.querySelectorAll('.card-image');
+const message = document.querySelector('.message');
+const pScore = document.querySelector('.player-score');
+const cScore = document.querySelector('.computer-score');
+
+
+// Set initial player and computer scores
+
+let playerScore = 0;
+let computerScore = 0;
+
+images.forEach((image) =>
+    image.addEventListener('click', function (e) {
+        let choice = e.target.alt;
+        console.log(choice); // remove this once it's working
+        if (playerScore >= 5 || computerScore >=5) {
+            return;
+        }
+        game(choice);
+
+    }));
+
+
 // create a function that chooses either rock paper or scissors randomly
 function computerPlay() {
     return choices[Math.floor(choices.length * Math.random())];
 
 }
 // create a function to play one round of rock paper scissors
-function playRound(playerSelection, computerSelection) {
+function playRound(pSelection, cSelection) {
     // check if the player choice and computer choice are identical
-    if (playerSelection === computerSelection) {
+    if (pSelection === cSelection) {
         return "draw";
         // check if the computer choice beats the player choice
-    } else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
-        (playerSelection === 'paper' && computerSelection === 'scissors') ||
-        (playerSelection === 'scissors' && computerSelection === 'rock')) {
+    } else if ((pSelection === 'Rock' && cSelection === 'Paper') ||
+        (pSelection === 'Paper' && cSelection === 'Scissors') ||
+        (pSelection === 'Scissors' && cSelection === 'Rock')) {
         return 'lose';
         // if computer doesn't beat the player and it's not a draw then the player wins
     } else {
@@ -20,56 +43,38 @@ function playRound(playerSelection, computerSelection) {
 
 }
 // create a function to play 5 rounds of games
-function game() {
+function game(pChoice) {
     // initialise the player and computer scores
-    let playerScore = 0;
-    let computerScore = 0;
-// loop through 5 rounds
-    for (let i = 1; i < 6;) {
-        // make a random choice for the computer
-        let computerChoice = computerPlay().toLowerCase();
-        // ask the user for an input
-        let playerChoice = prompt("Make your choice! Type Rock, Paper, or Scissors to choose").toLowerCase();
-        // play a round
-        let roundResult = playRound(playerChoice, computerChoice);
-        // check if the round was won, lost or drawn. Only add to the round count if it wasn't drawn
-        if (roundResult === 'draw') {
-            // print the outcome of the round
-            console.log("The round was drawn, play again")
-        } else if (roundResult === 'lose') {
-            // add to the computer score
-            computerScore++;
-            // add to the round count
-            i++;
-            // print the outcome of the round
-            console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
-        } else {
-            // add to the player score
-            playerScore++;
-            // add to the round count
-            i++;
-            // print the outcome of the round
-            console.log(`You win! ${playerChoice} beats ${computerChoice}`)
-        }
-// print the current score
-        console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
-
-    }
-    // once 5 complete rounds have been played print game over
-    console.log("Game Over")
-
-    // if the player has scored more than the computer print "You win" if not print "You lose"
-    if (playerScore > computerScore) {
-        console.log("You win!")
+    // make a random choice for the computer
+    let computerChoice = computerPlay();
+    // ask the user for an input
+    let playerChoice = pChoice;
+    // play a round
+    let roundResult = playRound(playerChoice, computerChoice);
+    // check if the round was won, lost or drawn. Only add to the round count if it wasn't drawn
+    if (roundResult === 'draw') {
+        // print the outcome of the round
+        message.textContent = "The round was drawn, play again"
+    } else if (roundResult === 'lose') {
+        // add to the computer score
+        computerScore++;
+        cScore.textContent = computerScore;
+        // print the outcome of the round
+        message.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     } else {
-        console.log("You lose!")
+        // add to the player score
+        playerScore++;
+        pScore.textContent = playerScore;
+        // print the outcome of the round
+        message.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     }
-    // print the final score
-    console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
+    if (computerScore >= 5) {
+        message.textContent = "Too bad, You lose!";
+    } else if (playerScore >= 5) {
+        message.textContent = "Way to go, You won!";
+    }
+
 }
 
 // set the choices for the computer to select from
-let choices = ["rock", "paper", "scissors"];
-
-// allow the page to run the game
-game()
+let choices = ["Rock", "Paper", "Scissors"]
